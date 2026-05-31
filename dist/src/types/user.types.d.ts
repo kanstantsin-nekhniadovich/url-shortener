@@ -1,0 +1,9 @@
+export interface CreateUser {
+    name: string;
+    email: string;
+}
+export interface User {
+    id: string;
+    name: string | null;
+    email: string | null;
+}

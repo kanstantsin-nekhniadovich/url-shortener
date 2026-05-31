@@ -1,0 +1,74 @@
+services:
+  api:
+    build:
+      context: .
+    develop:
+      watch:
+        - path: ./src
+          target: /app/src
+          action: sync
+          initial_sync: true
+        - path: ./test
+          target: /app/test
+          action: sync
+          initial_sync: true
+        - path: ./drizzle
+          target: /app/drizzle
+          action: sync
+          initial_sync: true
+        - path: ./nest-cli.json
+          target: /app/nest-cli.json
+          action: sync+restart
+        - path: ./tsconfig.json
+          target: /app/tsconfig.json
+          action: sync+restart
+        - path: ./tsconfig.build.json
+          target: /app/tsconfig.build.json
+          action: sync+restart
+        - path: ./drizzle.config.ts
+          target: /app/drizzle.config.ts
+          action: sync+restart
+        - path: ./package.json
+          action: rebuild
+        - path: ./package-lock.json
+          action: rebuild
+    container_name: url-shortener-api
+    ports:
+      - 3000:3000
+    env_file:
+      - ./.env
+    environment:
+      PORT: ${PORT}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - url-shortener-network
+
+  postgres:
+    image: postgres:alpine
+    restart: always
+    container_name: url-shortener-db
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: [CMD-SHELL, "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 5432:5432
+    volumes:
+      - pg-data:/var/lib/postgresql
+    networks:
+      - url-shortener-network
+
+volumes:
+  pg-data:
+
+networks:
+  url-shortener-network:
