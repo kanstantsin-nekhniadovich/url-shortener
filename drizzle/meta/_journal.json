@@ -15,6 +15,13 @@
       "when": 1780245191233,
       "tag": "0001_empty_talkback",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1780261310942,
+      "tag": "0002_dashing_vision",
+      "breakpoints": true
     }
   ]
 }

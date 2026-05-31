@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import type { DB } from '../../db/client';
-import { InjectDb } from '../../db/db.provider';
-import { urlTable } from '../../db/schema';
+import type { DB } from '../db/client';
+import { InjectDb } from '../db/db.provider';
+import { urlTable } from '../db/schema';
 import { UrlData } from 'src/types/url.types';
 import { eq } from 'drizzle-orm';
 

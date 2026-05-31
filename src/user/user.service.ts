@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from './user.repository';
-import { User } from '../../types/user.types';
+import { User } from '../types/user.types';
 
 @Injectable()
 export class UserService {
@@ -18,5 +18,9 @@ export class UserService {
     email: string;
   }): Promise<User> {
     return await this.userRepo.createUser({ name, email });
+  }
+
+  async getUserByEmail(email: string): Promise<User | null> {
+    return await this.userRepo.findByEmail(email);
   }
 }

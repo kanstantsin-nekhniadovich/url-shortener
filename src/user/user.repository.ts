@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
-import { InjectDb } from '../../db/db.provider';
-import { userTable } from '../../db/schema';
-import type { DB } from '../../db/client';
+import { InjectDb } from '../db/db.provider';
+import { userTable } from '../db/schema';
+import type { DB } from '../db/client';
 import { CreateUser, User } from 'src/types/user.types';
 
 @Injectable()
@@ -18,11 +18,24 @@ export class UserRepository {
     return user;
   }
 
-  async find(id: string) {
+  async findById(id: string) {
     const [user] = await this.db
       .select()
       .from(userTable)
       .where(eq(userTable.id, id));
+
+    if (!user) {
+      return null;
+    }
+
+    return user;
+  }
+
+  async findByEmail(email: string) {
+    const [user] = await this.db
+      .select()
+      .from(userTable)
+      .where(eq(userTable.email, email));
 
     if (!user) {
       return null;
