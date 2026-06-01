@@ -67,8 +67,28 @@ services:
     networks:
       - url-shortener-network
 
+  redis:
+    image: redis:8.8.0
+    restart: always
+    env_file:
+      - ./.env
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$REDIS_PASSWORD\" ping | grep PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--save", "20", "1", "--requirepass", "${REDIS_PASSWORD}"]
+    volumes:
+      - cache:/data
+    networks:
+      - url-shortener-network
+
 volumes:
   pg-data:
+  cache:
+    driver: local
 
 networks:
   url-shortener-network:

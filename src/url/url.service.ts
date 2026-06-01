@@ -7,7 +7,7 @@ import { CreateUrl, UrlData } from 'src/types/url.types';
 export class UrlService {
   constructor(private readonly urlRepo: UrlRepository) {}
 
-  async getUrlByHash(hash: string): Promise<UrlData> {
+  async getUrlByHash(hash: string): Promise<UrlData | null> {
     return this.urlRepo.getUrlByHash(hash);
   }
 

@@ -10,7 +10,7 @@ export class UrlController {
 
   @UseGuards(AuthGuard)
   @Get(':hash')
-  async getOriginalUrl(@Param('hash') hash: string): Promise<UrlData> {
+  async getOriginalUrl(@Param('hash') hash: string): Promise<UrlData | null> {
     return await this.urlService.getUrlByHash(hash);
   }
 
