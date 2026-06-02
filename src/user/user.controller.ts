@@ -5,11 +5,14 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  UseFilters,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from '../types/user.types';
+import { HttpExceptionFilter } from 'src/http-exception-filter';
 
+@UseFilters(HttpExceptionFilter)
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}

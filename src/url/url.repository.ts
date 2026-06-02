@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import type { DB } from '../db/client';
 import { InjectDb } from '../db/db.provider';
 import { urlTable } from '../db/schema';
@@ -30,7 +30,7 @@ export class UrlRepository {
       .where(eq(urlTable.hash, hash));
 
     if (!urlData) {
-      return null;
+      throw new NotFoundException();
     }
 
     await this.cache.set(hash, urlData);

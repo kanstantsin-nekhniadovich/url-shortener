@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import { InjectDb } from '../db/db.provider';
 import { userTable } from '../db/schema';
@@ -25,7 +25,7 @@ export class UserRepository {
       .where(eq(userTable.id, id));
 
     if (!user) {
-      return null;
+      throw new NotFoundException();
     }
 
     return user;
@@ -38,7 +38,7 @@ export class UserRepository {
       .where(eq(userTable.email, email));
 
     if (!user) {
-      return null;
+      throw new NotFoundException();
     }
 
     return user;

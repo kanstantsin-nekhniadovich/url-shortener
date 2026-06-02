@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UserRepository } from './user.repository';
 import { User } from '../types/user.types';
 
@@ -17,7 +17,17 @@ export class UserService {
     name: string;
     email: string;
   }): Promise<User> {
-    return await this.userRepo.createUser({ name, email });
+    try {
+      return await this.userRepo.createUser({ name, email });
+    } catch (err) {
+      throw new HttpException(
+        'User creating failed',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+        {
+          cause: err as Error,
+        },
+      );
+    }
   }
 
   async getUserByEmail(email: string): Promise<User | null> {
