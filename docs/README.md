@@ -31,6 +31,10 @@ Use one scenario across all phases so the implementation stays coherent:
 | 4 | [phase-4-consumer-and-read-model.md](./phase-4-consumer-and-read-model.md) | Consumer implementation, projections, idempotency |
 | 5 | [phase-5-testing-and-operations.md](./phase-5-testing-and-operations.md) | Validation, troubleshooting, recovery drills |
 
+## Additional learning track
+
+- [postgres-learning-tickets.md](./postgres-learning-tickets.md) - hands-on Postgres refresh tasks for migrations, joins, aggregates, indexes, performance analysis, and destructive SQL commands inside this project.
+
 ## Current code anchors
 
 These are the current files that own the write paths and app composition:

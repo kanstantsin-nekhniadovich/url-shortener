@@ -22,6 +22,41 @@
       "when": 1780261310942,
       "tag": "0002_dashing_vision",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1783251558319,
+      "tag": "0003_windy_firelord",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1783253617692,
+      "tag": "0004_glossy_warlock",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1783628088743,
+      "tag": "0005_past_ken_ellis",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1783881938130,
+      "tag": "0006_numerous_silhouette",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1783882312186,
+      "tag": "0007_chunky_norman_osborn",
+      "breakpoints": true
     }
   ]
 }

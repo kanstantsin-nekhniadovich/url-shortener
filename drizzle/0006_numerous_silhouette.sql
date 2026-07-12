@@ -1,0 +1,1 @@
+CREATE INDEX "url_user_id" ON "url" USING btree ("user_id");
